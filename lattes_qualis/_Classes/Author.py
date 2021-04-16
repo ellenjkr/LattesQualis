@@ -23,11 +23,11 @@ class Quartis(): # Get journal quartile
 		percentil = None
 		log = ''
 		link_scopus = ''
+		insttoken = os.environ.get('INSTTOKEN')
+		headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': self.api_key}
+		uri = "https://api.elsevier.com/content/serial/title?issn=" + self.issn + "&view=citescore"
+		response = requests.get(uri, headers=headers)
 		try:
-			insttoken = os.environ.get('INSTTOKEN')
-			headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': self.api_key}
-			uri = "https://api.elsevier.com/content/serial/title?issn=" + self.issn + "&view=citescore"
-			response = requests.get(uri, headers=headers)
 			json_data = json.loads(response.text)
 
 			link_scopus = json_data['serial-metadata-response']['entry'][0]['link'][0]['@href']

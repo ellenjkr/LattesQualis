@@ -521,6 +521,13 @@ class ExcelFile(Workbook):
 		ws = self.create_sheet("Art|PPG")
 		for row in dataframe_to_rows(self.artppg, index=False, header=True):
 			ws.append(row)
+
+		# for col in ws.columns:
+		# 	if col[0].column_letter == 'I': 
+		# 		for cell in col:
+		# 			if cell.value != " ":
+		# 				cell.number_format = "$"
+
 		ws.append([""])
 		for row in dataframe_to_rows(self.general_indicators_2016, index=False, header=True):
 			ws.append(self.styled_cells(row, ws, qualis_year="2016"))

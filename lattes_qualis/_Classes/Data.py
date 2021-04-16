@@ -99,7 +99,7 @@ class Data():
 				start = start.replace('-', '')
 				end = quadrennium[3] # There's no limit
 			else:
-				if FILE == "UFSC 2017-2020" or FILE == "UNIVALI 2013-2016":
+				if FILE == "UFSC 2017-2020":
 					start = str(self.professors["Início do Vínculo"][pos])[2:4]
 				else:
 					start = str(self.professors["Início do Vínculo"][pos])[8:]
@@ -108,7 +108,7 @@ class Data():
 				if end == "-":
 					end = quadrennium[3]
 				else:
-					if FILE == "UFSC 2017-2020" or FILE == "UNIVALI 2013-2016":
+					if FILE == "UFSC 2017-2020":
 						end = str(self.professors["Fim do Vínculo"][pos])[2:4]
 					else:
 						end = str(self.professors["Fim do Vínculo"][pos])[8:]
@@ -529,34 +529,36 @@ class Data():
 			scopus_articles = {"Title":[], "Citations":[]}
 			scopus = ScopusModified('2f8a856ea2c32c265b4c5a9895e6900d')
 			for pos, author_id in enumerate(self.professors["ID Scopus"]):
-				try:
-					search = scopus.search(f"AU-ID ({author_id})")
-					docs_array = []
-					for doc in search['scopus_id']: # Gets the documents
-						docs_array.append(doc)
-					
-					# ============== TO RETRIEVE MORE DATA THAN THE LIMIT ====================
-					# The limit is 25 by request
+				if author_id != " " and author_id != "nan":
+					try:
+						author_id = int(str(author_id))
+						search = scopus.search(f"AU-ID ({author_id})")
+						docs_array = []
+						for doc in search['scopus_id']: # Gets the documents
+							docs_array.append(doc)
+						
+						# ============== TO RETRIEVE MORE DATA THAN THE LIMIT ====================
+						# The limit is 25 by request
 
-					done = 0
-					not_done = 25
-					citations_temp = []
-					while not_done < len(docs_array) + 25: 
-						citations_temp.append(scopus.retrieve_citation(scopus_id_array=docs_array[done:not_done], year_range=[int(f"20{quadrennium[0]}"), int(f"20{quadrennium[len(quadrennium)-1]}")])) # Retrieve the citations data
-						done += 25
-						not_done += 25
-					# ========================================================================
+						done = 0
+						not_done = 25
+						citations_temp = []
+						while not_done < len(docs_array) + 25: 
+							citations_temp.append(scopus.retrieve_citation(scopus_id_array=docs_array[done:not_done], year_range=[int(f"20{quadrennium[0]}"), int(f"20{quadrennium[len(quadrennium)-1]}")])) # Retrieve the citations data
+							done += 25
+							not_done += 25
+						# ========================================================================
 
-					citations = citations_temp[0]
-					for pos, citation in enumerate(citations_temp):
-						if pos != 0:
-							citations = citations.append(citation, ignore_index = True)
-					for pos2, titulo in enumerate(search['title']):
-						titulo = scopus_articles_exceptions(titulo)
-						scopus_articles["Title"].append(titulo)
-						scopus_articles["Citations"].append(citations["range_citation"][pos2])
-				except Exception as err:
-					print("Erro: ", err)
+						citations = citations_temp[0]
+						for pos, citation in enumerate(citations_temp):
+							if pos != 0:
+								citations = citations.append(citation, ignore_index = True)
+						for pos2, titulo in enumerate(search['title']):
+							titulo = scopus_articles_exceptions(titulo)
+							scopus_articles["Title"].append(titulo)
+							scopus_articles["Citations"].append(citations["range_citation"][pos2])
+					except Exception as err:
+						print("Erro: ", err)
 			citations = []
 	
 			for title in self.artppg["Título"]:
@@ -565,13 +567,13 @@ class Data():
 					if title.lower().strip() in title2 or title2 in title.lower().strip():
 						pos = i
 				if pos != None:
-					citations.append(str(scopus_articles["Citations"][pos]))
+					citations.append(int(scopus_articles["Citations"][pos]))
 				else:
-					citations.append("-")
+					citations.append("")
 					
 		else:
 			citations = []
 			for title in self.artppg["Título"]:
-				citations.append("-")
+				citations.append("")
 
 		self.artppg.insert(8, 'Citações', citations)
