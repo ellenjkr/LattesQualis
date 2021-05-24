@@ -90,9 +90,13 @@ class Data():
 
 	def get_author_period(self, pos):
 		if FULL_PERIOD_AUTHORS == True:
-			period = {quadrennium[0]: True, quadrennium[1]: True, quadrennium[2]: True, quadrennium[3]: True}
+			period = {}
+			for year in quadrennium:
+				period[year] = True
 		else:
-			period = {quadrennium[0]: False, quadrennium[1]: False, quadrennium[2]: False, quadrennium[3]: False}
+			period = {}
+			for year in quadrennium:
+				period[year] = False
 
 			if EGRESS == True:
 				start = str(self.professors['Ingresso'][pos])[7:]

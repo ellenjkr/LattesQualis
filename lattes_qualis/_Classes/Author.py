@@ -305,7 +305,7 @@ class Author():
 					year = int(pub[0].attrib['ANO']) # Get year
 
 				first_year = int(quadrennium[0]) + 2000 # First year of the quadrennium
-				last_year = int(quadrennium[3]) + 2000 # Last year of the quadrennium
+				last_year = int(quadrennium[-1]) + 2000 # Last year of the quadrennium
 
 				if year >= first_year and year <= last_year: # If the year is in the quadrennium
 					if self.period[str(year)[2:]] == True: # If the publication year is valid for that author

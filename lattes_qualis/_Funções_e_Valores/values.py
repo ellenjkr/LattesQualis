@@ -1,6 +1,8 @@
 # Choose the file
 
-FILE = "UNIVALI 2017-2020"
+# FILE = "BRUNO ARAUJO CC"
+FILE = "BRUNO ARAUJO FARMACIA"
+# FILE = "UNIVALI 2017-2020"
 # FILE = "UNIVALI 2020"
 # FILE = "UNIVALI 2013-2016"
 # FILE = "UFSC 2017-2020"
@@ -11,12 +13,46 @@ FILE = "UNIVALI 2017-2020"
 #-------------------------------------
 # Choose if scopus data should be retrieved
 
-# REQUEST_SCOPUS_DATA = False
-REQUEST_SCOPUS_DATA = True
+REQUEST_SCOPUS_DATA = False
+# REQUEST_SCOPUS_DATA = True
 
 # =========================================================
 
-if FILE == "UNIVALI 2017-2020":
+if FILE == "BRUNO ARAUJO CC":
+	EGRESS = False # If the entry data are egress
+	FILES_DIRECTORY = "Arquivos BRUNO ARAUJO CC"
+	ND = 12.1 
+	quadrennium = ["17", "18", "19", "20", "21"] 
+	FULL_PERIOD_AUTHORS = True # True if we assume the authors are active for the whole period
+	HAS_EVENTS = True
+	EXCEL_FILE_NAME = "coleta_bruno_araujo_CC.xlsx" 
+
+	# GRAPH:
+	Y_LIMITS = {"Irestrito": 30, "Igeral": 30, "Periódicos": 30, "Periódicos com alunos/egressos": 30, "Anais": 30, "Anais com alunos/egressos": 30, 
+				"A1-A4": 30, "A1-A4 com alunos/egressos": 30, "A1-B1": 30, "A1-B1 com alunos/egressos": 30,
+				"B1-B4": 30, "B1-B4 com alunos/egressos": 30, "B2-B5": 30, "B2-B5 com alunos/egressos": 30,
+				 "Periódicos A1-A4": 30, "Periódicos A1-A4 com alunos/egressos": 30, "Periódicos A1-B1": 30, "Periódicos A1-B1 com alunos/egressos": 30}
+	Y_LIMITS_PROCEEDINGS = 30 
+	Y_LIMITS_JOURNALS = 30 
+
+elif FILE == "BRUNO ARAUJO FARMACIA":
+	EGRESS = False # If the entry data are egress
+	FILES_DIRECTORY = "Arquivos BRUNO ARAUJO FARMACIA"
+	ND = 12.1 
+	quadrennium = ["17", "18", "19", "20", "21"] 
+	FULL_PERIOD_AUTHORS = True # True if we assume the authors are active for the whole period
+	HAS_EVENTS = False
+	EXCEL_FILE_NAME = "coleta_bruno_araujo_farmacia.xlsx" 
+
+	# GRAPH:
+	Y_LIMITS = {"Irestrito": 30, "Igeral": 30, "Periódicos": 30, "Periódicos com alunos/egressos": 30, "Anais": 30, "Anais com alunos/egressos": 30, 
+				"A1-A4": 30, "A1-A4 com alunos/egressos": 30, "A1-B1": 30, "A1-B1 com alunos/egressos": 30,
+				"B1-B4": 30, "B1-B4 com alunos/egressos": 30, "B2-B5": 30, "B2-B5 com alunos/egressos": 30,
+				 "Periódicos A1-A4": 30, "Periódicos A1-A4 com alunos/egressos": 30, "Periódicos A1-B1": 30, "Periódicos A1-B1 com alunos/egressos": 30}
+	Y_LIMITS_PROCEEDINGS = 30 
+	Y_LIMITS_JOURNALS = 30 
+
+elif FILE == "UNIVALI 2017-2020":
 	EGRESS = False # If the entry data are egress
 	FILES_DIRECTORY = "Arquivos UNIVALI 2017-2020"
 	ND = 12.1 

@@ -965,15 +965,18 @@ class ExcelFile(Workbook):
 	def apply_dimensions(self):
 		for ws in self.worksheets:
 			if ws.title == "Exceções":
-				ws.column_dimensions['A'].width = 50
-				ws.column_dimensions['B'].width = 50
-				size = len(self.exceptions["Nome Evento Canônico"][0])
-				for i in self.exceptions["Nome Evento Canônico"]:
-					if len(str(i)) > size:
-						size = len(i)
-				ws.column_dimensions['C'].width = size
+				if self.exceptions:
+					ws.column_dimensions['A'].width = 50
+					ws.column_dimensions['B'].width = 50
 
-			elif ws.title == "Parâmetros":
+
+					size = len(self.exceptions["Nome Evento Canônico"][0])
+					for i in self.exceptions["Nome Evento Canônico"]:
+						if len(str(i)) > size:
+							size = len(i)
+					ws.column_dimensions['C'].width = size
+
+			if ws.title == "Parâmetros":
 				ws.column_dimensions['A'].width = 28
 				ws.column_dimensions['B'].width = 15
 
