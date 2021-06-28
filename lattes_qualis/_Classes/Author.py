@@ -384,7 +384,7 @@ class Author():
 		percentages.append((100/total_articles * b1_b4).round(2))
 		for key in qualis.keys():
 			percentages.append((100/total_articles * qualis[key]).round(2))
-		percentages.append((100/total_arttotal_articlesigos * others).round(2))
+		percentages.append((100/total_articles * others).round(2))
 
 		# ==========================================================
 
