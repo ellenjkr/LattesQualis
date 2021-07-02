@@ -831,7 +831,7 @@ class ExcelFile(Workbook):
 
 			if ws.title == "Anais|PPG" or ws.title == "Periódicos|PPG":
 				for col in ws.columns: 
-					if col[0].column_letter in "CDE":
+					if col[0].column_letter in "DE":
 						for cell in col:
 							if str(cell.value) in ["A1", "A2", "A3", "A4"]:
 								cell.font = Font(color='FFFAFA')
@@ -843,6 +843,14 @@ class ExcelFile(Workbook):
 								cell.fill = PatternFill(fill_type='solid', start_color='008000', end_color='008000')
 							elif "Q3" in str(cell.value) or "Q4" in str(cell.value):
 								cell.fill = PatternFill(fill_type='solid', start_color='FFFF99', end_color='FFFF99')	
+					elif col[0].column_letter == "C":
+						for cell in col:
+							if str(cell.value) in ["A1", "A2", "A3", "A4", "B1"]:
+								cell.font = Font(color='FFFAFA')
+								cell.fill = PatternFill(fill_type='solid', start_color='008000', end_color='008000')
+							elif str(cell.value) in ["B2", "B3", "B4", "B5"]:
+								cell.fill = PatternFill(fill_type='solid', start_color='FFFF99', end_color='FFFF99')
+
 
 			elif ws.title == "Gráficos Q2016" or ws.title == "Gráficos Q2019":
 				for i in range(7):
@@ -965,7 +973,7 @@ class ExcelFile(Workbook):
 	def apply_dimensions(self):
 		for ws in self.worksheets:
 			if ws.title == "Exceções":
-				if self.exceptions:
+				if self.exceptions.empty is False:
 					ws.column_dimensions['A'].width = 50
 					ws.column_dimensions['B'].width = 50
 
