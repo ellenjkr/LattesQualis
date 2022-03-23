@@ -4,12 +4,13 @@ from _Funções_e_Valores.values import FILES_DIRECTORY, FILE, HAS_EVENTS
 
 import pandas as pd
 
+
 def read_files():
 	# Read files - People
 	try:
-		professors = pd.read_csv(f"{FILES_DIRECTORY}/Professores.csv", sep=";", encoding='iso-8859-1')
-	except:
 		professors = pd.read_csv(f"{FILES_DIRECTORY}/Professores.csv", sep=";", encoding='utf-8')
+	except:
+		professors = pd.read_csv(f"{FILES_DIRECTORY}/Professores.csv", sep=";", encoding='iso-8859-1')
 	try:
 		egress = pd.read_csv(f"{FILES_DIRECTORY}/Egressos.CSV", sep=";", encoding='iso-8859-1')
 	except:
@@ -85,7 +86,3 @@ if __name__ == '__main__':
 
 	excel = ExcelFile(data)
 	excel.save_file()
-	
-
-	
-	

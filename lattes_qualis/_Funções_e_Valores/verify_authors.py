@@ -132,10 +132,12 @@ def search_authors_list(authors_list, author):
 
 		# Remove accents, lowercase, split words
 		name_temp = name.replace("-", " ")
+		name_temp = " ".join(name_temp.split())
 		name_array = unidecode.unidecode(name_temp).lower().split(" ")
-		author_temp = author.replace("-", " ")
-		author_array = unidecode.unidecode(author_temp).lower().split(" ")
 
+		author_temp = author.replace("-", " ")
+		author_temp = " ".join(author_temp.split())
+		author_array = unidecode.unidecode(author_temp).lower().split(" ")
 		# ========================================================================
 
 		# Almost the same as search_professors_list

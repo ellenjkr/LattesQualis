@@ -2,7 +2,8 @@
 
 # FILE = "BRUNO ARAUJO CC"
 # FILE = "BRUNO ARAUJO FARMACIA"
-FILE = "UNIVALI 2017-2020"
+FILE = "ANDRE 2022"
+# FILE = "UNIVALI 2017-2020"
 # FILE = "UNIVALI 2020"
 # FILE = "UNIVALI 2013-2016"
 # FILE = "UFSC 2017-2020"
@@ -43,6 +44,23 @@ elif FILE == "BRUNO ARAUJO FARMACIA":
 	FULL_PERIOD_AUTHORS = True # True if we assume the authors are active for the whole period
 	HAS_EVENTS = False
 	EXCEL_FILE_NAME = "coleta_bruno_araujo_farmacia.xlsx" 
+
+	# GRAPH:
+	Y_LIMITS = {"Irestrito": 30, "Igeral": 30, "Periódicos": 30, "Periódicos com alunos/egressos": 30, "Anais": 30, "Anais com alunos/egressos": 30, 
+				"A1-A4": 30, "A1-A4 com alunos/egressos": 30, "A1-B1": 30, "A1-B1 com alunos/egressos": 30,
+				"B1-B4": 30, "B1-B4 com alunos/egressos": 30, "B2-B5": 30, "B2-B5 com alunos/egressos": 30,
+				 "Periódicos A1-A4": 30, "Periódicos A1-A4 com alunos/egressos": 30, "Periódicos A1-B1": 30, "Periódicos A1-B1 com alunos/egressos": 30}
+	Y_LIMITS_PROCEEDINGS = 30 
+	Y_LIMITS_JOURNALS = 30 
+
+elif FILE == "ANDRE 2022":
+	EGRESS = False # If the entry data are egress
+	FILES_DIRECTORY = "Arquivos ANDRE 2022"
+	ND = 12.1 
+	quadrennium = ["18", "19", "20", "21"] 
+	FULL_PERIOD_AUTHORS = True # True if we assume the authors are active for the whole period
+	HAS_EVENTS = True
+	EXCEL_FILE_NAME = "coleta_univali_2018_2021.xlsx" 
 
 	# GRAPH:
 	Y_LIMITS = {"Irestrito": 30, "Igeral": 30, "Periódicos": 30, "Periódicos com alunos/egressos": 30, "Anais": 30, "Anais com alunos/egressos": 30, 
