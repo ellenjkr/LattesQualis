@@ -2,8 +2,8 @@
 
 # FILE = "BRUNO ARAUJO CC"
 # FILE = "BRUNO ARAUJO FARMACIA"
-FILE = "ANDRE 2022"
-# FILE = "UNIVALI 2017-2020"
+# FILE = "ANDRE 2022"
+FILE = "UNIVALI 2017-2020"
 # FILE = "UNIVALI 2020"
 # FILE = "UNIVALI 2013-2016"
 # FILE = "UFSC 2017-2020"
@@ -16,6 +16,8 @@ FILE = "ANDRE 2022"
 
 REQUEST_SCOPUS_DATA = False
 # REQUEST_SCOPUS_DATA = True
+
+SCOPUS_APIKEY = '8934021b31a290d8597706cfcae46339'
 
 # =========================================================
 
@@ -54,13 +56,13 @@ elif FILE == "BRUNO ARAUJO FARMACIA":
 	Y_LIMITS_JOURNALS = 30 
 
 elif FILE == "ANDRE 2022":
-	EGRESS = False # If the entry data are egress
-	FILES_DIRECTORY = "Arquivos ANDRE 2022"
-	ND = 12.1 
-	quadrennium = ["17", "18", "19", "20", "21"] 
-	FULL_PERIOD_AUTHORS = True # True if we assume the authors are active for the whole period
-	HAS_EVENTS = True
-	EXCEL_FILE_NAME = "coleta_univali_2017_2021.xlsx" 
+	EGRESS = False # Se é para egressos ou não
+	FILES_DIRECTORY = "Arquivos ANDRE 2022" # Pasta onde ele busca os currículos e demais dados
+	ND = 12.1  # Número médio de docentes no periodo
+	quadrennium = ["17", "18", "19", "20", "21"] # Período
+	FULL_PERIOD_AUTHORS = True # Se os autores estão ativos durante todo o período
+	HAS_EVENTS = True # Se considera os eventos
+	EXCEL_FILE_NAME = "coleta_univali_2017_2021.xlsx" # arquivo de saída
 
 	# GRAPH:
 	Y_LIMITS = {"Irestrito": 30, "Igeral": 30, "Periódicos": 30, "Periódicos com alunos/egressos": 30, "Anais": 30, "Anais com alunos/egressos": 30, 

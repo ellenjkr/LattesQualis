@@ -127,8 +127,10 @@ class ScopusModified(object):
         par = {'query': query, 'start': index,
                'httpAccept': 'application/json', 'view': view}
 
-        insttoken = os.environ.get('INSTTOKEN')
-        headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': key}
+        # insttoken = os.environ.get('INSTTOKEN')
+        # headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': key}
+
+        headers = {'X-ELS-APIKey': key}
 
         if type_ == 'article' or type_ == 1:
             r = requests.get("https://api.elsevier.com/content/search/scopus", params=par, headers=headers)
@@ -226,10 +228,14 @@ class ScopusModified(object):
         par = {'scopus_id': ','.join(scopus_id_array), \
                 'httpAccept':'application/json', 'date': date}
 
-        insttoken = os.environ.get('INSTTOKEN')
-        headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': self.apikey}
+        # insttoken = os.environ.get('INSTTOKEN')
+        # headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': self.apikey}
 
+        headers = {'X-ELS-APIKey': self.apikey}
+        
         r = requests.get("https://api.elsevier.com/content/abstract/citations", params=par, headers=headers)
+
+        print(r)
         js = r.json()
 
         return self.parse_citation(js, year_range)

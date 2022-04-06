@@ -7,7 +7,7 @@ import json
 
 from _Funções_e_Valores.verify_authors import treat_commas, search_professors_list, search_authors_list, treat_exceptions
 from _Funções_e_Valores._exceptions import event_exceptions, initials_exceptions, issn_exceptions, article_exceptions, presentation_exceptions
-from _Funções_e_Valores.values import quadrennium, FILES_DIRECTORY, HAS_EVENTS, REQUEST_SCOPUS_DATA
+from _Funções_e_Valores.values import quadrennium, FILES_DIRECTORY, HAS_EVENTS, REQUEST_SCOPUS_DATA, SCOPUS_APIKEY
 
 
 class Quartis(): # Get journal quartile
@@ -23,8 +23,12 @@ class Quartis(): # Get journal quartile
 		percentil = None
 		log = ''
 		link_scopus = ''
-		insttoken = os.environ.get('INSTTOKEN')
-		headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': self.api_key}
+		
+		# insttoken = os.environ.get('INSTTOKEN')
+		# headers = {'X-ELS-Insttoken': insttoken, 'X-ELS-APIKey': SCOPUS_APIKEY}
+		
+		headers = {'X-ELS-APIKey': SCOPUS_APIKEY}
+
 		uri = "https://api.elsevier.com/content/serial/title?issn=" + self.issn + "&view=citescore"
 		response = requests.get(uri, headers=headers)
 		try:
@@ -142,7 +146,7 @@ class Author():
 
 
 		if REQUEST_SCOPUS_DATA == True:
-			quartis = Quartis(issn, '2f8a856ea2c32c265b4c5a9895e6900d')
+			quartis = Quartis(issn, SCOPUS_APIKEY)
 			self.info["Scopus 2019"].append(quartis.get_quartis())
 		else:
 			self.info["Scopus 2019"].append("-")

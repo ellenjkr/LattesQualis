@@ -10,7 +10,7 @@ from _Classes.Indicators import Indicators
 
 from _Funções_e_Valores.verify_authors import search_authors_list, treat_exceptions
 from _Funções_e_Valores._exceptions import scopus_articles_exceptions
-from _Funções_e_Valores.values import quadrennium, FILE, HAS_EVENTS, FULL_PERIOD_AUTHORS, REQUEST_SCOPUS_DATA, EGRESS
+from _Funções_e_Valores.values import quadrennium, FILE, HAS_EVENTS, FULL_PERIOD_AUTHORS, REQUEST_SCOPUS_DATA, EGRESS, SCOPUS_APIKEY
 
 
 class Data():
@@ -531,7 +531,7 @@ class Data():
 	def get_scopus_citations(self):
 		if REQUEST_SCOPUS_DATA == True:
 			scopus_articles = {"Title":[], "Citations":[]}
-			scopus = ScopusModified('2f8a856ea2c32c265b4c5a9895e6900d')
+			scopus = ScopusModified(SCOPUS_APIKEY)
 			for pos, author_id in enumerate(self.professors["ID Scopus"]):
 				if author_id != " " and author_id != "nan":
 					try:
