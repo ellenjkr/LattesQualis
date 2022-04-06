@@ -57,10 +57,10 @@ elif FILE == "ANDRE 2022":
 	EGRESS = False # If the entry data are egress
 	FILES_DIRECTORY = "Arquivos ANDRE 2022"
 	ND = 12.1 
-	quadrennium = ["18", "19", "20", "21"] 
+	quadrennium = ["17", "18", "19", "20", "21"] 
 	FULL_PERIOD_AUTHORS = True # True if we assume the authors are active for the whole period
 	HAS_EVENTS = True
-	EXCEL_FILE_NAME = "coleta_univali_2018_2021.xlsx" 
+	EXCEL_FILE_NAME = "coleta_univali_2017_2021.xlsx" 
 
 	# GRAPH:
 	Y_LIMITS = {"Irestrito": 30, "Igeral": 30, "Periódicos": 30, "Periódicos com alunos/egressos": 30, "Anais": 30, "Anais com alunos/egressos": 30, 

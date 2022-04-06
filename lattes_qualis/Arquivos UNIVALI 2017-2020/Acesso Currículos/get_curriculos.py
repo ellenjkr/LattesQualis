@@ -13,14 +13,15 @@ except:
 for file in os.listdir('../Curriculos'): # Clear the folder that holds the resumes
 	os.remove(f"../Curriculos/{file}")
 
-for pos, professor in enumerate(professors["Nome"]): # Iterates through the professors
+for pos, professor in enumerate(professors["Nome"]):  # Iterates through the professors
 	link = professors["Lattes"][pos] # Get the link to the professor's lattes page 
 	if "lattes" in str(link):
 		lattes_id = re.findall(r'[0-9]+', link)[0] # Get the professor's id
 
 		# Request the resume:
-		r = requests.get(f"http://sapi.udesc.br:8080/SapiWebService/?tokenAcesso=edd6b4922c1d1252a1646f259336cc5b&acao=downloadCurriculo&codigoLattes={lattes_id}")
+		r = requests.get(f"https://sapi.unoesc.edu.br/WebService/?tokenAcesso=edd6b4922c1d1252a1646f259336cc5b&acao=downloadCurriculo&codigoLattes={lattes_id}")
 
+		print(r)
 		with open(f'{professor}.zip', 'wb') as f: # Download it as a zip file
 			f.write(r.content)
 

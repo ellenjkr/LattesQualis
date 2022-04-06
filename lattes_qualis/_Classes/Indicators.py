@@ -3,6 +3,7 @@ from _Funções_e_Valores.values import ND
 
 import pandas as pd
 
+
 class Indicators():
 	def __init__(self, egress_list, students_list, info, qualis_year, general=False):
 		super(Indicators, self).__init__()
@@ -11,7 +12,7 @@ class Indicators():
 		self.info = info
 		self.qualis_year = qualis_year
 		self.general = general
-		
+
 
 	def get_SE(self, data_frame): # Get the amount of publications that contains students or egress as authors
 		# Get students and egress names
@@ -32,12 +33,12 @@ class Indicators():
 						# Verify if the author's name is on the egress list and if it's a valid publication year 
 						for pos_egress, egress in enumerate(egress_names):
 							if data_frame[column][index] == egress:
-								if self.egress_list[pos_egress].period[str(int(data_frame["Ano"][index]))[2:4]] == True:
+								if self.egress_list[pos_egress].period[str(int(data_frame["Ano"][index]))[2:4]] is True:
 									SE = True
 						# Verify if the author's name is on the students list and if it's a valid publication year 
 						for pos_student, student in enumerate(students_names):
 							if data_frame[column][index] == student:
-								if self.students_list[pos_student].period[str(data_frame["Ano"][index])[2:4]] == True:
+								if self.students_list[pos_student].period[str(data_frame["Ano"][index])[2:4]] is True:
 									SE = True
 			# If there's an egress or a student as an author for that publication it increases the amount of SE
 			if SE == True:

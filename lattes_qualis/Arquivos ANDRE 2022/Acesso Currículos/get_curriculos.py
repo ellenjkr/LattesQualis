@@ -4,7 +4,6 @@ import os
 import pandas as pd
 import re
 
-
 # Read the file with the encoding utf-8 and if that doesn't work try with iso-8859-1
 try:
 	professors = pd.read_csv("Professores.csv", sep=";", encoding='utf-8') 

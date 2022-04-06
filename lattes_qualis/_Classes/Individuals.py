@@ -1,12 +1,13 @@
 from _Funções_e_Valores.values import FILE
 
+
 class Students_and_Egress(): # Class for students and egress that holds their name, active-period and egress year
 	def __init__(self, name, period, egress_year):
 		super(Students_and_Egress, self).__init__()
 		self.name = name
 		self.period = period
 		self.egress_year = egress_year
-		
+
 
 class Student(): 
 	def __init__(self, students, quadrennium):
@@ -43,7 +44,9 @@ class Student():
 		else:
 			for pos, student in enumerate(self.students["Aluno"]): # Iterates through the students
 				if str(student) != "nan":
-					period = {self.quadrennium[0]: False, self.quadrennium[1]: False, self.quadrennium[2]: False, self.quadrennium[3]: False}
+					period = {}
+					for year in self.quadrennium:
+						period[year] = False
 					if str(self.students["Ingresso"][pos]) != "nan":
 						ingress_year = int(str(self.students["Ingresso"][pos])[7:])
 						if str(ingress_year) in period: # If the ingress year it's in the quadrennium
@@ -77,7 +80,9 @@ class Egress():
 		egress_list = []
 		for pos, student in enumerate(self.egress["Aluno"]):
 			if str(student) != "nan":
-				period = {self.quadrennium[0]: False, self.quadrennium[1]: False, self.quadrennium[2]: False, self.quadrennium[3]: False}
+				period = {}
+				for year in self.quadrennium:
+					period[year] = False
 				if str(self.egress["Egresso"][pos]) != "nan":
 					egress_year = int(str(int(self.egress["Egresso"][pos]))[2:])
 					if egress_year >= (int(self.quadrennium[0])-5): # Only the ones after the (first year of the quaddrenium - 5)

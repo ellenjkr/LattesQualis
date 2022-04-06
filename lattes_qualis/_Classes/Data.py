@@ -101,7 +101,7 @@ class Data():
 			if EGRESS == True:
 				start = str(self.professors['Ingresso'][pos])[7:]
 				start = start.replace('-', '')
-				end = quadrennium[3] # There's no limit
+				end = quadrennium[-1] # There's no limit
 			else:
 				if FILE == "UFSC 2017-2020":
 					start = str(self.professors["Início do Vínculo"][pos])[2:4]
@@ -110,15 +110,15 @@ class Data():
 				end = str(self.professors["Fim do Vínculo"][pos])
 
 				if end == "-":
-					end = quadrennium[3]
+					end = quadrennium[-1]
 				else:
 					if FILE == "UFSC 2017-2020":
 						end = str(self.professors["Fim do Vínculo"][pos])[2:4]
 					else:
 						end = str(self.professors["Fim do Vínculo"][pos])[8:]
 
-					if int(end) > int(quadrennium[3]):
-						end = quadrennium[3]
+					if int(end) > int(quadrennium[-1]):
+						end = quadrennium[-1]
 
 			start_position = None
 			end_position = None
